@@ -1,43 +1,69 @@
 // Espera a que el documento HTML esté completamente cargado antes de ejecutar el código JavaScript.
 document.addEventListener("DOMContentLoaded", function () {
-    // Obtén referencias a los elementos HTML que vamos a interactuar.
-    const locationInput = document.getElementById("locationInput");
-    const getWeatherButton = document.getElementById("getWeatherButton");
-    const temperature = document.getElementById("temperature");
-    const description = document.getElementById("description");
-    const humidity = document.getElementById("humidity");
-    const windSpeed = document.getElementById("windSpeed");
-    const errorMessage = document.getElementById("errorMessage");
+    const button = document.getElementById('getWeatherButton');
+    const inputUbi = document.getElementById('locationInput');
+    const temperatura = document.getElementById('temperature');
+    const descripcion = document.getElementById('description');
+    const humedad = document.getElementById('humidity');
+    const viento = document.getElementById('windSpeed');
+    const errorMessage = document.getElementById('errorMessage'); // Nuevo elemento para mostrar errores
 
-    // Agrega un evento de clic al botón "Obtener Pronóstico".
-    getWeatherButton.addEventListener("click", function () {
-        // Obtiene la ubicación ingresada por el usuario.
-        const location = locationInput.value;
+    function Pasaje_Kelvin_Celcius(temp) {
+        let tempCelcius = temp - 273.15;
+        let tempRedondeada = Math.round(tempCelcius);
+        return tempRedondeada + "°C";
+    }
 
-        // Verifica si el campo de ubicación está vacío.
-        if (!location) {
-            errorMessage.textContent = "Por favor, ingrese una ubicación válida.";
-            clearWeatherData(); // Limpia los datos del pronóstico del tiempo en la interfaz.
-            return;
+    button.addEventListener('click', function () {
+        const ubicacion = inputUbi.value;
+
+        if (ubicacion) {
+            const apiKey = '68173e9e371142fa668996603e3fc023'; // Reemplaza con tu propia clave de API de OpenWeatherMap
+
+            // Construye la URL para la solicitud a la API
+            let URLFetch = `https://api.openweathermap.org/data/2.5/weather?q=${ubicacion}&appid=${apiKey}`;
+
+            // Realiza la solicitud a la API
+            fetch(URLFetch)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    mostrar(data);
+                })
+                .catch(function (error) {
+                    mostrarError("Ha ocurrido un error al obtener datos del pronóstico del tiempo.");
+                    console.error("Ha ocurrido el siguiente error: ", error);
+                });
         }
-
-        // Llama a la función que obtiene el pronóstico del tiempo usando una API aquí.
-        // En este ejemplo, estamos simulando la obtención de datos, pero en la aplicación real
-        // deberías hacer una solicitud HTTP a una API real.
-
-        // Ejemplo de cómo actualizar la interfaz después de obtener la respuesta:
-        temperature.textContent = "25°C";
-        description.textContent = "Soleado";
-        humidity.textContent = "65%";
-        windSpeed.textContent = "10 km/h";
-        errorMessage.textContent = "";
     });
+
+    function mostrar(data) {
+        if (data) {
+            temperatura.textContent = `${Pasaje_Kelvin_Celcius(data.main.temp)}`;
+            descripcion.textContent = `${data.weather[0].description}`;
+            humedad.textContent = ` ${data.main.humidity}%`;
+            viento.textContent = `${data.wind.speed} m/s`;
+            errorMessage.textContent = ""; // Limpia cualquier mensaje de error previo
+        } else {
+            mostrarError("No se encontraron datos para la ubicación especificada.");
+        }
+    }
 
     // Función para limpiar los datos del pronóstico del tiempo en la interfaz.
     function clearWeatherData() {
-        temperature.textContent = "";
-        description.textContent = "";
-        humidity.textContent = "";
-        windSpeed.textContent = "";
+        temperatura.textContent = "";
+        descripcion.textContent = "";
+        humedad.textContent = "";
+        viento.textContent = "";
+    }
+
+    function mostrarError(message) {
+        errorMessage.textContent = message;
+        // Puedes agregar estilos CSS para que los mensajes de error sean más visibles.
+        errorMessage.style.color = "red";
     }
 });
+
+
+

@@ -1,0 +1,94 @@
+body {
+    font-size: 62.5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("img/tom-caillarec-pJYOtbxZ0MM-unsplash.jpg");
+    background-size: 1500px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: grid;
+}
+
+.container h1 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.input-container {
+    display: grid;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.input-container input {
+    width: 70%;
+    margin: 0 auto 1rem auto;
+    padding: 0.6rem;
+    border: 1px solid #000;
+    border-radius: 0.3rem;
+}
+
+.input-container button {
+    padding: 0.6rem;
+    font-weight: bold;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    border-radius: 0.3rem;
+}
+
+.input-container button:hover {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    background-color: rgb(19, 158, 158);
+}
+
+.weather-info {
+    display: grid;
+    width: 90%;
+    font-size: large;
+}
+
+@media (min-width: 425px) {
+    .container h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container h1 {
+        font-size: 3rem;
+    }
+
+    .input-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .input-container {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-container input {
+        width: 100%;
+    }
+
+    .input-container button {
+        margin-top: 1rem;
+        width: 50%;
+    }
+}
