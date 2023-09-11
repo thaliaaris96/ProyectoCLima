@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronostico del clima</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pronóstico del clima</h1>
+        <div class="input-container">
+            <input type="text" id="locationInput" placeholder="Ingresar ubicación">
+            <button id="getWeatherButton">Obtener Pronóstico</button>
+        </div>
+        <div class="weather-info">
+            <p>Temperatura: <span id="temperature"></span></p>
+            <p>Clima: <span id="description"></span></p>
+            <p>Humedad: <span id="humidity"></span></p>
+            <p>Velocidad del Viento: <span id="windSpeed"></span></p>
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
