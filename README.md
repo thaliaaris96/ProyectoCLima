@@ -1,6 +1,6 @@
-# ProyectoCLima
+# ProyectoClima
 <P>Proyecto de carácter grupal</P>
-<P>En este proyecto se nos pidió realizar una página desde cero que fuera capaz de realizar peticiones a una API de clima con el objetivo de que nos devolviera el clima según la búsqueda que realizemos</P>
+<P>En este proyecto se nos pidió crear una aplicación web interactiva que permita a los usuarios obtener el pronóstico del tiempo actual para una ubicación específica utilizando una API de pronóstico del tiempo.</P>
 <P>Utilizamos la API que fue recomendada por la propuesta y esta fue la que implementamos, su nombre es Open weather map</P>
 <P>Los integrantes del proyecto fueron</P>
 <ul>
