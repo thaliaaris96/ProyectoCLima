@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const descripcion = document.getElementById('description');
     const humedad = document.getElementById('humidity');
     const viento = document.getElementById('windSpeed');
+    const ubication = document.getElementById('ubication');
     const errorMessage = document.getElementById('errorMessage'); // Nuevo elemento para mostrar errores
 
     function Pasaje_Kelvin_Celcius(temp) {
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrar(data) {
         if (data) {
+            ubication.textContent = `${data.name}`;
             temperatura.textContent = `${Pasaje_Kelvin_Celcius(data.main.temp)}`;
             descripcion.textContent = `${data.weather[0].description}`;
             humedad.textContent = ` ${data.main.humidity}%`;
@@ -47,11 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
             errorMessage.textContent = ""; // Limpia cualquier mensaje de error previo
         } else {
             mostrarError("No se encontraron datos para la ubicación especificada.");
-        }
+        }  
     }
 
     // Función para limpiar los datos del pronóstico del tiempo en la interfaz.
     function clearWeatherData() {
+        ubication.textContent = "";
         temperatura.textContent = "";
         descripcion.textContent = "";
         humedad.textContent = "";
@@ -60,8 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarError(message) {
         errorMessage.textContent = message;
-        // Puedes agregar estilos CSS para que los mensajes de error sean más visibles.
-        errorMessage.style.color = "red";
     }
 });
 
